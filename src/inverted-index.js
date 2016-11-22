@@ -7,7 +7,7 @@ class InvertedIndex {
    * class constructor
    * @constructor
    */
-  constructor(){
+  constructor() {
     this.indexMap = {};
   }
    /**
@@ -25,7 +25,7 @@ class InvertedIndex {
    * @param {Integer} tag [the document number the word exists.]
    * @return
    */
-  mapWords(wordArray, tag){ 
+  mapWords(wordArray, tag){
   }
   /**
    * gets the index map
