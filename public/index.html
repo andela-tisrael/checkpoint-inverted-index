@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="InvertedIndex">
+
+<head>
+    <title>Inverted Index</title>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> 
+    <link rel="stylesheet" type="text/css" href="./css.css">
+    <script type="text/javascript" src="./src/angular.min.js"></script>
+    <script type="text/javascript" src="./src/inverted-index.js"></script>
+    <script type="text/javascript" src="./src/app.js"></script>
+</head>
+
+<body class="appBackground" ng-controller="IndexCtrl">
+    <div class="wrapper">
+        <header class="flex-grid">
+            <h1 align="left"> <!--text-align =  "justify"-->Inverted Index</h1>
+        </header>
+        <div style="float:center" for="field1">
+            <input type="text" class="input-field" name="field1" placeholder="search..." ng-model="searchIndex"><i class="ion-ios-search" aria-hidden="true"></i></input>
+            <button class="btn btn--default" id="search-button" ng-click="search()">Search</button>
+        </div>
+        <div class="flex-grid">
+            <aside class="sidebar">
+                <h2 class="block-title">Indexes</h2>
+                <p id="list"> Upload a JSON file to create an index.</p>
+                <label class="btn btn--default">
+                    Upload &nbsp; <i class="ion-upload"></i>
+                    <input id="json-file" class="file-upload" type="file" multiple>
+                </label>
+                <select ng-model="fileSelected">
+                    <option value="">Select File..</option>
+                    <option value="{{file}}" ng-repeat="file in fileName">{{file}}</option>
+                </select>
+                <button class="btn btn--default" ng-click="createIndex()">Create Index &nbsp;</button>
+                <div class="error">{{error}}</div>
+                <div></div>
+                <div>
+                    <footer><small>&copy;<a href="https://github.com/andela-tisrael">andela-tisrael</a></small></footer>
+                </div>
+            </aside>
+            <div id="indexes" class="card flex__grow">
+                <table>
+                    <thead>
+                        <tr>
+                            <th ng-if="indexes">Words</th>
+                            <th ng-repeat="i in indexes">Doc {{ (i++1) }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- {{index}} -->
+                        <tr ng-repeat="(key, value) in words ">
+                            <td>{{ key }}</td>
+                            <td ng-repeat="i in indexes">
+                                <span ng-repeat="val in value">
+                                <span ng-if = "i ==(val-1)"></span>
+                                <i ng-if="i == (val - 1)" class="fa fa-check" aria-hidden="true"></i> 
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- style="float:right" -->
+                <h1 ng-if="!indexes" class="bold">Create Index</h1>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+    function handleFileSelect(evt) {
+        var files = evt.target.files; // FileList object
+
+        // files is a FileList of File objects. List some properties.
+        var output = [];
+        var text = [];
+        for (var i = 0, f; f = files[i]; i++) {
+            var indexNames = output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+
+                f.size, ' bytes, last modified: ',
+                f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                '</li>');
+        }
+        document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+    }
+
+    document.getElementById('json-file').addEventListener('change', handleFileSelect, true);
+    </script>
+</body>
+
+</html>
