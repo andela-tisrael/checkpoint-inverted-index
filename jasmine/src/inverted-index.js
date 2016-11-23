@@ -10,25 +10,24 @@ class InvertedIndex {
   constructor() {
     this.indexMap = {};
   }
-   /**
+  /**
    * Create index
    * @function
    * @param {Array} jsonArray [json array]
    * @return
    */
   createIndex(jsonArray) {
-    this.indexMap = {};
     this.docCount = [];
     this.count = 0;
     for (const object in jsonArray) {
-        this.docCount.push(parseInt(object));
-        }
+      this.docCount.push(parseInt(object, 10));
+    }
     jsonArray.forEach((object) => {
       this.count += 1;
-      let bookTitleArray = InvertedIndex.token((jsonArray[object].title));
-      let bookTextArray = InvertedIndex.token((jsonArray[object].text));
-      let wordIndex = new Set(bookTitleArray.concat(bookTextArray));
-      let formArray = Array.from(wordIndex.values());
+      const bookTitleArray = InvertedIndex.token((object.title));
+      const bookTextArray = InvertedIndex.token((object.text));
+      const wordIndex = new Set(bookTitleArray.concat(bookTextArray));
+      const formArray = Array.from(wordIndex.values());
       this.mapWords(formArray, this.count);
     });
   }
@@ -49,12 +48,12 @@ class InvertedIndex {
    * @param {Integer} tag [the document number the word exists.]
    * @return
    */
-  mapWords(wordArray, tag){
+  mapWords(wordArray, tag) {
     wordArray.forEach((word) => {
-      if (wordArray[word] in this.indexMap) {
-        this.indexMap[wordArray[word]].push(tag);
+      if (word in this.indexMap) {
+        this.indexMap[word].push(tag);
       } else {
-        this.indexMap[wordArray[word]] = [tag];
+        this.indexMap[word] = [tag];
       }
     });
   }
@@ -76,11 +75,10 @@ class InvertedIndex {
     const result = {};
     const searchQuery = query.split(' ');
     searchQuery.forEach((word) => {
-      if (dictionary.hasOwnProperty(word)){
+      if (word in dictionary) {
         result[word] = this.indexMap[word];
       }
     });
-    //console.log(result.keys(word));
     return Object.keys(result).length > 0 ? result : this.indexMap;
   }
 }
