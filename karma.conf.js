@@ -48,6 +48,14 @@ module.exports = function(config) {
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
+    
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: "Chrome",
+        flags: ["--no-sandbox"]
+      }
+    },
+
 
 
     // enable / disable watching file and executing tests whenever any file changes
@@ -56,7 +64,9 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: process.env.TRAVIS ? ["Chrome_travis_ci"] : ["Chrome"],
 
 
     // Continuous Integration mode
