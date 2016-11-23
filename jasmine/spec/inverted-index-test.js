@@ -1,5 +1,5 @@
 /*
- * Unit tests for ./src/inverted-index.js
+ * Unit tests for src/inverted-index.js
  */
 //
 var books = [{
