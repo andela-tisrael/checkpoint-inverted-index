@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Wed Nov 23 2016 10:43:00 GMT+0100 (WAT)
+// Generated on Wed Nov 23 2016 11:19:27 GMT+0100 (WAT)
 
 module.exports = function(config) {
   config.set({
@@ -15,8 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'jasmine/src/*.js',
-      'jasmine/spec/*.js'
+      './jasmine/src/inverted-index.js',
+      './jasmine/spec/inverted-index-test.js'
     ],
 
 
@@ -51,7 +51,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers
@@ -61,7 +61,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
