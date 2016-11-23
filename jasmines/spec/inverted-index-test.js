@@ -2,7 +2,6 @@
  * Unit tests for src/inverted-index.js
  */
 //
-//var InvertedIndex = require("../src/inverted-index.js");
 var books = [{
         "title": "Alice in Wonderland",
         "text": "Alice falls into a rabbit hole and enters a world full of imagination."
@@ -18,12 +17,11 @@ describe('Inverted Index', function() {
         this.invertedIndex = new InvertedIndex();
         this.index = this.invertedIndex.createIndex(books);
         this.getIndexMap = this.invertedIndex.getIndex();
-        console.log(this.invertedIndex);
 
     });
 
     it('constructor should declare an empty indexMap', function() {
-        expect(typeof(this.invertedIndex.indexMap)).toEqual('object');
+        expect(typeof this.invertedIndex.indexMap).toEqual('object');
     });
 
     describe('Read book data', function() {
