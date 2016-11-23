@@ -13,14 +13,14 @@
     "consistent-return": 0,
     "no-param-reassign": 0,
     "comma-dangle": 0,
-    "no-shadow": [0, { "allow": ["req", "res", "err"] }],
-    "valid-jsdoc": [0, {
+    "no-shadow": [1, { "allow": ["req", "res", "err"] }],
+    "valid-jsdoc": [1, {
       "requireReturn": true,
       "requireReturnType": true,
       "requireParamDescription": false,
       "requireReturnDescription": true
     }],
-    "require-jsdoc": [0, {
+    "require-jsdoc": [1, {
         "require": {
             "FunctionDeclaration": true,
             "MethodDefinition": true,
