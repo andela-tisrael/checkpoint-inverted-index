@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Mon Nov 21 2016 19:51:47 GMT+0100 (WAT)
+// Generated on Wed Nov 23 2016 11:19:27 GMT+0100 (WAT)
 
 module.exports = function(config) {
   config.set({
@@ -21,19 +21,21 @@ module.exports = function(config) {
 
 
     // list of files to exclude
-    exclude: [],
+    exclude: [
+    ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      './jasmine/src/inverted-index.js' : 'coverage'
     },
+
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ["progress", "coverage", "coveralls"],
+    reporters: ['progress'],
+
 
     // web server port
     port: 9876,
@@ -46,7 +48,7 @@ module.exports = function(config) {
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
-
+    
     customLaunchers: {
       Chrome_travis_ci: {
         base: "Chrome",
@@ -54,10 +56,8 @@ module.exports = function(config) {
       }
     },
 
-    coverageReporter: {
-      type: "lcov",
-      dir: "coverage/"
-    },
+
+
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
@@ -67,6 +67,7 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: process.env.TRAVIS ? ["Chrome_travis_ci"] : ["Chrome"],
+
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
