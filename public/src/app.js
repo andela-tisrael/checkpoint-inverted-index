@@ -31,12 +31,16 @@ angular.module('InvertedIndex', [])
                 $scope.error = 'Search field cannot be empty';
             } else {
                 $scope.error = '';
+                let searchArray = $scope.searchIndex.split(' ');
                 $scope.words = index.search($scope.searchIndex);
+                //Raise alert that a word is not present in the index
+                for(let word in searchArray){
+                    if(!(searchArray[word] in $scope.words)){
+                        alert(searchArray[word] + ' not found in index');
+                    }
+                }    
             }
         };
-
-
-
         // Create index
         $scope.createIndex = () => {
             for (list in $scope.fileList) {
