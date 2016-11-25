@@ -29,7 +29,7 @@ Inverted index takes a JSON array of text objects and creates an index from the 
 
 ## Contributing
  1. Fork this repository to your account.
- 2. Clone your repositry: `git clone git@github.com:your-username/inverted-index.git`
+ 2. Clone your repositry: `git clone git@github.com:your-username/inverted-index.git` 
  3. Create your feature branch: `git checkout -b new-feature`
  4. Commit your changes: `git commit -m "did something"`
  5. Push to the remote branch: `git push origin new-feature`
