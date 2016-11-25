@@ -2,7 +2,9 @@
  * InvertedIndex class with constructor
  * @class
  */
+/*eslint-disable */
 class InvertedIndex {
+/*eslint-enable */
   /**
    * class constructor
    * @constructor
@@ -13,15 +15,17 @@ class InvertedIndex {
   /**
    * Create index
    * @function
-   * @param {Array} jsonArray [json array]
-   * @return
+   * @param {Array} jsonArray json array
+   * @return {void}
    */
   createIndex(jsonArray) {
     this.docCount = [];
     this.count = 0;
+    /*eslint-disable */
     for (const object in jsonArray) {
       this.docCount.push(parseInt(object, 10));
     }
+    /*eslint-enable */
     jsonArray.forEach((object) => {
       this.count += 1;
       const bookTitleArray = InvertedIndex.token((object.title));
@@ -34,8 +38,8 @@ class InvertedIndex {
   /**
    * Get tokens in a string of text.
    * @function
-   * @param {String} jsonWord [word to be tokenize.]
-   * @return {Array} [array of tokens]
+   * @param {String} jsonWord word to be tokenize.
+   * @return {Array} array of tokens
    */
   static token(jsonWord) {
     return jsonWord.toLowerCase()
@@ -44,9 +48,9 @@ class InvertedIndex {
   /**
    * Map Array of words to indexMap.
    * @function
-   * @param {String} wordArray [unique word to be mapped.]
-   * @param {Integer} tag [the document number the word exists.]
-   * @return
+   * @param {String} wordArray unique word to be mapped.
+   * @param {Integer} tag the document number the word exists.
+   * @return {void}
    */
   mapWords(wordArray, tag) {
     wordArray.forEach((word) => {
@@ -59,15 +63,15 @@ class InvertedIndex {
   }
   /**
    * gets the index map
-   * @return {object} [all the words that exists in the documents with their tag]
+   * @return {object} all the words that exists in the documents with their tag
    */
   getIndex() {
     return this.indexMap;
   }
   /**
    * searches through the index map
-   * @param  {string} query [the set of string being input in search box]
-   * @return {object} result     [the search result is returned]
+   * @param  {string} query the set of string being input in search box
+   * @return {object} result     the search result is returned
    */
   search(query) {
     const dictionary = this.getIndex();
