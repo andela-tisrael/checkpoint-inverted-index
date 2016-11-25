@@ -28,7 +28,7 @@ Inverted index takes a JSON array of text objects and creates an index from the 
  - This application can only work for one file at a time.
 
 ## Contributing
- 1. Fork this repositry to your account.
+ 1. Fork this repository to your account.
  2. Clone your repositry: `git clone git@github.com:your-username/inverted-index.git`
  3. Create your feature branch: `git checkout -b new-feature`
  4. Commit your changes: `git commit -m "did something"`
