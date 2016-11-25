@@ -70,7 +70,6 @@ class InvertedIndex {
    * @return {object} result     [the search result is returned]
    */
   search(query) {
-    // console.log(query);
     const dictionary = this.getIndex();
     const result = {};
     const searchQuery = query.split(' ');
