@@ -3,7 +3,9 @@
 # Ignore all except the app folder
 
 src/angular.min.js
-jasmine/*.js
+./jasmine/*.js
 public/*
 ./gulpfile.js
 ./lib
+./*.js
+./*.json
