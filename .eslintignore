@@ -4,6 +4,7 @@
 
 src/angular.min.js
 ./jasmine/*.js
+./jasmine
 public/*
 ./gulpfile.js
 ./lib
