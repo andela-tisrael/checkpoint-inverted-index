@@ -50,10 +50,6 @@ describe('Inverted Index', () => {
             expect(InvertedIndex.token('alice !!!!, hello, world')).toEqual(['alice', 'hello', 'world']);
             expect(InvertedIndex.token('Today is **!! , a good!. day to smile')).toEqual(['today', 'is', 'a', 'good', 'day', 'to', 'smile']);
         });
-        it('Removes duplicates',function () {
-
-            expect(InvertedIndex.token('alice , alice alice jane')).toEqual(['alice', 'jane']);
-        });
 
         it('Creates an array of tokens', function() {
             expect(InvertedIndex.token(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
