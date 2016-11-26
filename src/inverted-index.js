@@ -21,8 +21,9 @@ class InvertedIndex {
   createIndex(jsonArray) {
     this.docCount = [];
     this.count = 0;
-    
+    /*eslint-disable */
     for (let object in jsonArray) {
+    /*eslint-enable */
       this.docCount.push(parseInt(object, 10));
     }
     jsonArray.forEach((object) => {
