@@ -23,9 +23,10 @@ class InvertedIndex {
     this.count = 0;
     /*eslint-disable */
     for (const object in jsonArray) {
+    /*eslint-enable */
       this.docCount.push(parseInt(object, 10));
     }
-    /*eslint-enable */
+    
     jsonArray.forEach((object) => {
       this.count += 1;
       const bookTitleArray = InvertedIndex.token((object.title));
