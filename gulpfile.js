@@ -11,7 +11,7 @@ gulp.task('browserSync', function() {
     browserSync.init({
         server: {
             baseDir: './',
-            index: "./jasmine/SpecRunner.html"
+            index: "./SpecRunner.html"
         }
     });
 });

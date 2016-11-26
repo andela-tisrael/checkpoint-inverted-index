@@ -26,8 +26,7 @@ class InvertedIndex {
       this.count += 1;
       const bookTitleArray = InvertedIndex.token((object.title));
       const bookTextArray = InvertedIndex.token((object.text));
-      const wordIndex = new Set(bookTitleArray.concat(bookTextArray));
-      const formArray = Array.from(wordIndex.values());
+      const formArray = new Set(bookTitleArray.concat(bookTextArray));
       this.mapWords(formArray, this.count);
     });
   }
