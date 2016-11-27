@@ -8,14 +8,22 @@ angular.module('InvertedIndex', [])
         $scope.indexes = null;
         //Select file to index
         document.getElementById('json-file').addEventListener('change', function(e) {
-            for (let i = 0; i < e.target.files.length; i++) {
-                $scope.fileList.push(e.target.files[i]);
-                $scope.fileName.push(e.target.files[i].name);
+            let files = e.target.files;
+            let output = [];
+            for (let i = 0; i < files.length; i++) {
+                $scope.fileList.push(files[i]);
+                $scope.fileName.push(files[i].name);
             }
+            for (let i = 0, f; f = files[i]; i++) {
+            let indexNames = output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+
+                f.size, ' bytes, last modified: ',
+                f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                '</li>');
+        }
+        document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
             $scope.$apply();
-            console.log($scope.fileList);
         });
-        console.log($scope.fileList);
         $scope.setIndex = function() {
             if (index.docCount.length === 0) {
                 $scope.error = 'JSON file should not be empty';
@@ -24,7 +32,6 @@ angular.module('InvertedIndex', [])
             return index.getIndex();
         };
         $scope.search = () => {
-            console.log($scope.words);
             if ($scope.words === undefined) {
                 $scope.error = 'Upload and Create an index first before search';
             } else if ($scope.searchIndex === undefined) {
@@ -46,7 +53,7 @@ angular.module('InvertedIndex', [])
             for (list in $scope.fileList) {
                 if ($scope.fileSelected == $scope.fileList[list].name) {
                     this.data = $scope.fileList[list];
-                } //$scope.fileSelected in $scope.fileList[0].name);
+                } 
             }
             $scope.error = '';
             index.indexMap = {};
@@ -59,7 +66,6 @@ angular.module('InvertedIndex', [])
             reader.onloadend = (e) => {
                 try {
                     this.data = JSON.parse(e.target.result);
-                    console.log(data);
                     // Validate format
                     if (typeof(data) !== 'object') {
                         $scope.error = 'Invalid JSON Format';
@@ -75,7 +81,6 @@ angular.module('InvertedIndex', [])
                     $scope.$apply(function() {
                         $scope.words = $scope.setIndex();
                         $scope.indexes = index.docCount;
-                        console.log($scope.words);
                     });
                 }, 1000);
             };

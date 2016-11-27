@@ -17,7 +17,6 @@ describe('Inverted Index', () => {
         this.invertedIndex = new InvertedIndex();
         this.index = this.invertedIndex.createIndex(books);
         this.getIndexMap = this.invertedIndex.getIndex();
-
     });
     it('should create an object once the class is declared', function() {
         expect(this.invertedIndex).toEqual(jasmine.any(Object));
@@ -38,7 +37,6 @@ describe('Inverted Index', () => {
             expect(this.getIndexMap.a).toEqual([1, 2]);
             expect(this.getIndexMap.alice).toEqual([1])
         });
-
     });
     describe('Get Index', () => {
         it('returns an object that is an accurate index of the content of the JSON file', function() {
@@ -55,7 +53,6 @@ describe('Inverted Index', () => {
             expect(InvertedIndex.token(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
         });
     });
-
     describe('Populate Index', () => {
         it('should populate indexMap once the createIndex button is clicked', function() {
             let populateIndex = new InvertedIndex();
@@ -69,7 +66,14 @@ describe('Inverted Index', () => {
     describe('Search Index', () => {
         it('should be able to search through the indexMap and output an object', function() {
             expect(this.invertedIndex.search('alice in wonderland')).toEqual({ alice: [1], in : [1], wonderland: [1] });
-
+        });
+        it('returns an Array of numbers', function () {
+            expect(this.invertedIndex.search('of').of).toEqual([1,2]);
+            expect(this.invertedIndex.search('alice').alice).toEqual([1]);
+        });
+        it('should filter out words or numbers that are irrelevant ato index', function() {
+            expect(this.invertedIndex.search('of 54276525475663')).toEqual({of: [1,2]});
+            expect(this.invertedIndex.search('alice in @#434 word')).toEqual({ alice: [ 1 ], in: [ 1 ] });
         });
 
     });

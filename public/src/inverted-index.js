@@ -13,42 +13,42 @@ class InvertedIndex {
   /**
    * Create index
    * @function
-   * @param {Array} jsonArray [json array]
+   * @param {Array} fileContent [json array]
    * @return
    */
-  createIndex(jsonArray) {
+  createIndex(fileContent) {
     this.docCount = [];
     this.count = 0;
-    for (const object in jsonArray) {
-      this.docCount.push(parseInt(object, 10));
+    for (const documents in fileContent) {
+      this.docCount.push(parseInt(documents, 10));
     }
-    jsonArray.forEach((object) => {
+    fileContent.forEach((content) => {
       this.count += 1;
-      const bookTitleArray = InvertedIndex.token((object.title));
-      const bookTextArray = InvertedIndex.token((object.text));
-      const formArray = new Set(bookTitleArray.concat(bookTextArray));
-      this.mapWords(formArray, this.count);
+      const bookTitle = InvertedIndex.token((content.title));
+      const bookText = InvertedIndex.token((content.text));
+      const removeDuplicates = new Set(bookTitle.concat(bookText));
+      this.mapWords(removeDuplicates, this.count);
     });
   }
   /**
    * Get tokens in a string of text.
    * @function
-   * @param {String} jsonWord [word to be tokenize.]
+   * @param {String} fileContent [word to be tokenize.]
    * @return {Array} [array of tokens]
    */
-  static token(jsonWord) {
-    return jsonWord.toLowerCase()
+  static token(fileContent) {
+    return fileContent.toLowerCase()
     .match(/\w+/g);
   }
   /**
    * Map Array of words to indexMap.
    * @function
-   * @param {String} wordArray [unique word to be mapped.]
+   * @param {String} words [array of unique words to be mapped.]
    * @param {Integer} tag [the document number the word exists.]
    * @return
    */
-  mapWords(wordArray, tag) {
-    wordArray.forEach((word) => {
+  mapWords(words, tag) {
+    words.forEach((word) => {
       if (word in this.indexMap) {
         this.indexMap[word].push(tag);
       } else {

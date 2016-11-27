@@ -15,24 +15,23 @@ class InvertedIndex {
   /**
    * Create index
    * @function
-   * @param {Array} jsonArray json array
+   * @param {Array} fileContent json array
    * @return {void}
    */
-  createIndex(jsonArray) {
+  createIndex(fileContent) {
     this.docCount = [];
     this.count = 0;
     /*eslint-disable */
-    for (let object in jsonArray) {
+    for (let documents in fileContent) {
     /*eslint-enable */
-      this.docCount.push(parseInt(object, 10));
+      this.docCount.push(parseInt(documents, 10));
     }
-    jsonArray.forEach((object) => {
+    fileContent.forEach((content) => {
       this.count += 1;
-      const bookTitleArray = InvertedIndex.token((object.title));
-      const bookTextArray = InvertedIndex.token((object.text));
-      const wordIndex = new Set(bookTitleArray.concat(bookTextArray));
-      const formArray = Array.from(wordIndex.values());
-      this.mapWords(formArray, this.count);
+      const bookTitle = InvertedIndex.token((content.title));
+      const bookText = InvertedIndex.token((content.text));
+      const wordIndex = new Set(bookTitle.concat(bookText));
+      this.mapWords(wordIndex, this.count);
     });
   }
   /**
@@ -41,8 +40,8 @@ class InvertedIndex {
    * @param {String} jsonWord word to be tokenize.
    * @return {Array} array of tokens
    */
-  static token(jsonWord) {
-    return jsonWord.toLowerCase()
+  static token(fileContent) {
+    return fileContent.toLowerCase()
     .match(/\w+/g);
   }
   /**
@@ -52,8 +51,8 @@ class InvertedIndex {
    * @param {Integer} tag the document number the word exists.
    * @return {void}
    */
-  mapWords(wordArray, tag) {
-    wordArray.forEach((word) => {
+  mapWords(words, tag) {
+    words.forEach((word) => {
       if (word in this.indexMap) {
         this.indexMap[word].push(tag);
       } else {
