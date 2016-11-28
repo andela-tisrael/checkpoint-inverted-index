@@ -28,9 +28,9 @@ class InvertedIndex {
     }
     fileContent.forEach((content) => {
       this.count += 1;
-      const bookTitle = InvertedIndex.token((content.title));
-      const bookText = InvertedIndex.token((content.text));
-      const wordIndex = new Set(bookTitle.concat(bookText));
+      const combineWords = `${content.title} ${content.text}`;
+      const tokenizedWords = InvertedIndex.token(combineWords);
+      const wordIndex = new Set(tokenizedWords);
       this.mapWords(wordIndex, this.count);
     });
   }

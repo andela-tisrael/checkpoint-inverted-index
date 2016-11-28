@@ -24,10 +24,10 @@ class InvertedIndex {
     }
     fileContent.forEach((content) => {
       this.count += 1;
-      const bookTitle = InvertedIndex.token((content.title));
-      const bookText = InvertedIndex.token((content.text));
-      const removeDuplicates = new Set(bookTitle.concat(bookText));
-      this.mapWords(removeDuplicates, this.count);
+      const combineWords = `${content.title} ${content.text}`;
+      const tokenizedWords = InvertedIndex.token(combineWords);
+      const wordIndex = new Set(tokenizedWords);
+      this.mapWords(wordIndex, this.count);
     });
   }
   /**
