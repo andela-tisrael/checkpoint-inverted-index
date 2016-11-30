@@ -2,16 +2,7 @@
  * Unit tests for src/inverted-index.js
  */
 //
-var books = [{
-        "title": "Alice in Wonderland",
-        "text": "Alice falls into a rabbit hole and enters a world full of imagination."
-    },
 
-    {
-        "title": "The Lord of the Rings: The Fellowship of the Ring.",
-        "text": "An unusual alliance of man, elf, dwarf, wizard and hobbit seek to destroy a powerful ring."
-    }
-];
 describe('Inverted Index', () => {
     beforeEach(function() {
         this.invertedIndex = new InvertedIndex();
@@ -24,9 +15,7 @@ describe('Inverted Index', () => {
     it('constructor should declare an empty indexMap', function() {
         expect(typeof this.invertedIndex.indexMap).toEqual('object');
     });
-
     describe('Read book data', () => {
-
         it('should return tokenized data as an array of strings in small letters', function() {
             expect(InvertedIndex.token(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
         });
