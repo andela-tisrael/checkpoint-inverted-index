@@ -37,7 +37,7 @@ class InvertedIndex {
   /**
    * Get tokens in a string of text.
    * @function
-   * @param {String} jsonWord word to be tokenize.
+   * @param {String} fileContent word to be tokenize.
    * @return {Array} array of tokens
    */
   static token(fileContent) {
@@ -47,7 +47,7 @@ class InvertedIndex {
   /**
    * Map Array of words to indexMap.
    * @function
-   * @param {String} wordArray unique word to be mapped.
+   * @param {String} words unique word to be mapped.
    * @param {Integer} tag the document number the word exists.
    * @return {void}
    */
