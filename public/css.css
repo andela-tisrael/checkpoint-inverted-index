@@ -11,6 +11,7 @@ html
 body
 {
     margin: 0;
+    background-color: lightblue;
 }
 
 h1
@@ -29,7 +30,8 @@ h5
 
 .appBackground
 {
-    background-image: url("./img/bg.jpg");
+    /*background-image: url("./img/bg.jpg");*/
+
 }
 
 .block-title
