@@ -6,6 +6,10 @@
     "es6": true,
     "mocha": true
   },
+  "globals": {
+    "amd": true,
+    "commonjs": true
+  },
   "rules": {
     "one-var": 0,
     "one-var-declaration-per-line": 0,
@@ -13,14 +17,14 @@
     "consistent-return": 0,
     "no-param-reassign": 0,
     "comma-dangle": 0,
-    "no-shadow": [1, { "allow": ["req", "res", "err"] }],
-    "valid-jsdoc": [1, {
+    "no-shadow": [0, { "allow": ["req", "res", "err"] }],
+    "valid-jsdoc": [0, {
       "requireReturn": true,
       "requireReturnType": true,
       "requireParamDescription": false,
       "requireReturnDescription": true
     }],
-    "require-jsdoc": [1, {
+    "require-jsdoc": [0, {
         "require": {
             "FunctionDeclaration": true,
             "MethodDefinition": true,
