@@ -18,7 +18,7 @@ class InvertedIndex {
   /**
    * Create index
    * @function
-   * @param {Array} fileContent json array
+   * @param {Array} fileContent 
    * @param {string} fileName Name of the file being indexed
    * @return {void}
    */
@@ -39,16 +39,16 @@ class InvertedIndex {
   /**
    * Get tokens in a string of text.
    * @function
-   * @param {String} fileContent word to be tokenize.
+   * @param {String} combineWords concatenated title and texts to be tokenize.
    * @return {Array} array of tokens
    */
-  static token(fileContent) {
-    return fileContent.toLowerCase()
+  static token(combineWords) {
+    return combineWords.toLowerCase()
     .match(/\w+/g);
   }
   /**
    * validates the file type using regEXP
-   * @param  {file}    file that is being uploaded
+   * @param  {file} file   file that is being uploaded
    * @return {string}      error message
    */
   static fileIsValid(file) {
@@ -104,7 +104,7 @@ class InvertedIndex {
   /**
    * searches through the index map
    * @param  {string} query the set of string being input in search box
-   * @param {string} title    the file title to be searched
+   * @param {string} title    the file title selected to be searched
    * @return {object} result     the search result is returned
    */
   search(query, title) {
