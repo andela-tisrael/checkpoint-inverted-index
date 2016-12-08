@@ -22,7 +22,9 @@ angular.module('InvertedIndex', [])
       for (let i = 0; i < files.length; i+=1) {
         $scope.getFiles(files[i]);
       }
+      /* eslint-disable */
       for (let i = 0, f; f = files[i]; i+=1) {
+      /* eslint-enable */
         const indexNames = output.push('<li><strong>', escape(f.name), '</strong><br>',
 
           f.size, ' bytes',
