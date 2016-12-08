@@ -65,8 +65,8 @@ angular.module('InvertedIndex', [])
             $scope.$apply(() => {
               $scope.error = 'Invalid JSON Format';
             });
-          }
-        }
+          };
+        };
         reader.readAsBinaryString(files);
 
       }
@@ -89,12 +89,12 @@ angular.module('InvertedIndex', [])
           $scope.fileName.splice(i, 1);
         }
         $scope.fileSelected = '';
-        $scope.error = 'Invalid JSON format'
+        $scope.error = 'Invalid JSON format';
       }
-      if ($scope.fileSelected != '') {
+      if ($scope.fileSelected !== '') {
         $scope.uploadedFile.push($scope.fileSelected);
-      }
-    }
+      };
+    };
 
     $scope.search = () => {
       $scope.template = false;

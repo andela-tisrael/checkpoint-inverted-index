@@ -6,7 +6,8 @@ src/angular.min.js
 ./jasmine/*.js
  jasmine/lib/jasmine-2.3.4/jasmine.js
 public/*
-./gulpfile.js
+gulpfile.js
+karma.conf.js
 ./lib
 ./*.js
 ./*.json

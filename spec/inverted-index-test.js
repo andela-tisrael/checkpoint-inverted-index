@@ -30,7 +30,7 @@ describe('Inverted Index', () => {
         });
         it('should be able to show the index of a particular data', function() {
             expect(this.getIndexMap.a).toEqual([1, 2]);
-            expect(this.getIndexMap.alice).toEqual([1])
+            expect(this.getIndexMap.alice).toEqual([1]);
         });
     });
     describe('Get Index', () => {
