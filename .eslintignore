@@ -8,6 +8,7 @@ src/angular.min.js
 public/*
 gulpfile.js
 karma.conf.js
+*.js
 ./lib
 ./*.js
 ./*.json

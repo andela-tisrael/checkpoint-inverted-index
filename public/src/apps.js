@@ -65,7 +65,7 @@ angular.module('InvertedIndex', [])
             $scope.$apply(() => {
               $scope.error = 'Invalid JSON Format';
             });
-          };
+          }
         };
         reader.readAsBinaryString(files);
 
@@ -93,7 +93,7 @@ angular.module('InvertedIndex', [])
       }
       if ($scope.fileSelected !== '') {
         $scope.uploadedFile.push($scope.fileSelected);
-      };
+      }
     };
 
     $scope.search = () => {
