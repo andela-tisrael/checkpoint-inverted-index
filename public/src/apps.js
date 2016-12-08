@@ -1,4 +1,5 @@
 /*  eslint-disable no-undef*/
+/*jshint esnext: true */
 // Angular Module InvertedIndex
 angular.module('InvertedIndex', [])
   // Angular Controller IndexCtrl

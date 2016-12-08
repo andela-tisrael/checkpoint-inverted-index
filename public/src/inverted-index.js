@@ -1,3 +1,4 @@
+/*jshint esnext: true */
 /**
  * InvertedIndex class with constructor
  * @class

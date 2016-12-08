@@ -1,3 +1,4 @@
+/*jshint esnext: true */
 /*
  * Unit tests for src/inverted-index.js
  */
