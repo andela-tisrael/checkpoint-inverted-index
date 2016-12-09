@@ -1,6 +1,6 @@
 const books = [ {
     "title": "Alice in Wonderland",
-    "text": "Alice falls into a rabbit hole and enters a world full of imagination."
+    "text": "falls into a rabbit hole and enters a world full of imagination."
   },
 
   {
@@ -8,6 +8,10 @@ const books = [ {
     "text": "An unusual alliance of man, elf, dwarf, wizard and hobbit seek to destroy a powerful ring."
   }
 ];
+
+const files = [{
+    "title": "hello everyone"
+}]
 const file2 = [];
 const filename = {
   'name':'file.json',

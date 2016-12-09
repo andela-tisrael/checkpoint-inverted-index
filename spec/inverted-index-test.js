@@ -59,6 +59,21 @@ describe('Inverted Index', () => {
         });
     });
     describe('Search Index', () => {
+        const query = 'alice lord';
+        let index = new InvertedIndex();
+        index.fileMap['books.json'] = books;
+        index.createIndex(books,'books.json');
+        index.createIndex(files,'files.json');
+        //index.createIndex(file2);
+        console.log(index.fileMap);
+        let result = index.search(query,'books.json');
+        console.log(result);
+        it(' should verify that searching the index returns an object of the indices', () => {
+            expect(result = index.search(query,'books.json')).toEqual({ alice: [1], lord: [2] });
+        });
+        it('should return an empty object if no search word is given', () => {
+            expect(result = index.search('', 'books.json')).toEqual(index.fileMap['books.json']);
+        });
         it('should be able to search through the indexMap and output an object', function() {
             expect(this.invertedIndex.search('alice in wonderland')).toEqual({ alice: [1], in : [1], wonderland: [1] });
         });
