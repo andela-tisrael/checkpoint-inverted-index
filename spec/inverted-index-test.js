@@ -13,6 +13,7 @@ describe('Inverted Index', () => {
     it('should create an object once the class is declared', function() {
         expect(this.invertedIndex).toEqual(jasmine.any(Object));
     });
+
     describe('Read book data', () => {
         it('should ensure the file content is actually a valid JSON Array', function() {
             expect(InvertedIndex.fileIsValid(filename)).toEqual(true);
@@ -34,11 +35,13 @@ describe('Inverted Index', () => {
             expect(this.getIndexMap.alice).toEqual([1]);
         });
     });
+
     describe('Get Index', () => {
         it('returns an object that is an accurate index of the content of the JSON file', function() {
             expect(this.invertedIndex.getIndex()).toEqual(jasmine.any(Object));
         });
     });
+
     describe('Tokenize', () => {
         it('Removes special characters', function() {
             expect(InvertedIndex.token('alice !!!!, hello, world')).toEqual(['alice', 'hello', 'world']);
@@ -49,6 +52,7 @@ describe('Inverted Index', () => {
             expect(InvertedIndex.token(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
         });
     });
+
     describe('Populate Index', () => {
         it('should populate indexMap once the createIndex button is clicked', function() {
             let populateIndex = new InvertedIndex();
@@ -59,16 +63,14 @@ describe('Inverted Index', () => {
             expect(InvertedIndex.token('alice is @#$ in wonderland$%')).toEqual(['alice', 'is', 'in', 'wonderland']);
         });
     });
+
     describe('Search Index', () => {
         const query = 'alice lord';
         let index = new InvertedIndex();
         index.fileMap['books.json'] = books;
         index.createIndex(books,'books.json');
         index.createIndex(files,'files.json');
-        //index.createIndex(file2);
-        console.log(index.fileMap);
         let result = index.search(query,'books.json');
-        console.log(result);
         it(' should verify that searching the index returns an object of the indices', () => {
             expect(result = index.search(query,'books.json')).toEqual({ alice: [1], lord: [2] });
         });
@@ -79,7 +81,6 @@ describe('Inverted Index', () => {
             expect(this.invertedIndex.search('alice in wonderland')).toEqual({ alice: [1], in : [1], wonderland: [1] });
         });
         it('should be able to search through all files', () => {
-            console.log(result = index.search('alice lord', 'all'));
             expect(result = index.search('alice lord', 'all')).toEqual(({ 'books.json':{ alice: [ 1 ], lord: [ 2 ] }, 'files.json':{ alice: [ 1 ], lord: [ 2 ] } }));
         });
         it('returns an Array of numbers', function () {
