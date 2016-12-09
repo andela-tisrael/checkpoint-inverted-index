@@ -21,6 +21,7 @@ describe('Inverted Index', () => {
         it('should ensure JSON array is not empty', function(){
             expect(InvertedIndex.contentIsValid(file2[0])).toEqual(false);
             expect(InvertedIndex.contentIsValid(books[0])).toEqual(true);
+            expect(InvertedIndex.contentIsEmpty(file2)).toEqual('JSON file should be an array of objects');
         });
         it('should return tokenized data as an array of strings in small letters', function() {
             expect(InvertedIndex.token(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
@@ -76,6 +77,10 @@ describe('Inverted Index', () => {
         });
         it('should be able to search through the indexMap and output an object', function() {
             expect(this.invertedIndex.search('alice in wonderland')).toEqual({ alice: [1], in : [1], wonderland: [1] });
+        });
+        it('should be able to search through all files', () => {
+            console.log(result = index.search('alice lord', 'all'));
+            expect(result = index.search('alice lord', 'all')).toEqual(({ 'books.json':{ alice: [ 1 ], lord: [ 2 ] }, 'files.json':{ alice: [ 1 ], lord: [ 2 ] } }));
         });
         it('returns an Array of numbers', function () {
             expect(this.invertedIndex.search('of').of).toEqual([1,2]);
