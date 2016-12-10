@@ -9,7 +9,6 @@ describe('Inverted Index', () => {
         this.invertedIndex.createIndex(books, 'books.json');
         this.getIndexMap = this.invertedIndex.getIndex('books.json');
         this.invertedIndex.createIndex(files, 'files.json');
-        //this.invertedIndex.search('books.json',query,query1);
     });
     it('should create an object once the class is declared', function () {
         expect(this.invertedIndex).toEqual(jasmine.any(Object));
@@ -32,7 +31,7 @@ describe('Inverted Index', () => {
             expect(this.getIndexMap.a).toEqual([1, 2]);
             expect(this.getIndexMap.alice).toEqual([1]);
         });
-        it('returns an object that is an accurate index of the content of the JSON file', function () {
+        it('should ensure ​getIndex​ method takes a string argument that specifies the location of the JSON data.', function () {
             expect(this.invertedIndex.getIndex('books.json')).toEqual(jasmine.any(Object));
         });
     });
@@ -68,6 +67,8 @@ describe('Inverted Index', () => {
         it('should ensure index is correct', function () {
             expect(typeof this.invertedIndex.getIndex('books.json')).toEqual('object');
             expect(this.invertedIndex.getIndex('books.json').a).toEqual([1,2]);
+        });
+        it('should ensure index is not overwritten by a new JSON file', function () {
             expect(Object.keys(this.invertedIndex.fileMap)).toEqual([ 'books.json', 'files.json' ]);
         });
     });
@@ -75,18 +76,18 @@ describe('Inverted Index', () => {
     describe('Search Index', function () {
         const query = 'alice';
         const query1 = 'lord';
-        const word = 'alice in wonderland';
+        const word = ['alice in wonderland', 'lord'];
         it('should be able to search through all files', function () {
             expect(this.invertedIndex.search('all', query, query1)).toEqual(({ 'books.json': { alice: [1], lord: [2] }, 'files.json': { alice: [1], lord: [2] } }));
         });
-        it('should verify that searching the index returns an object of the indices', function () {
+        it('should ensure ​searchIndex​ can handle a varied number of search terms as arguments', function () {
             expect(this.invertedIndex.search('books.json', query, query1)).toEqual({ alice: [1], lord: [2] });
         });
         it('should return an empty object if no search word is given', function () {
             expect(this.invertedIndex.search('books.json', '')).toEqual(this.invertedIndex.fileMap['books.json']);
         });
-        it('should be able to search through the indexMap and output an object', function () {
-            expect(this.invertedIndex.search('books.json', word)).toEqual({ alice:[1], in:[1], wonderland:[1] });
+        it('should ensure ​searchIndex ​can handle an array of search terms', function () {
+            expect(this.invertedIndex.search('books.json', word)).toEqual({ alice:[1], in:[1], wonderland:[1], lord:[2] });
         });
         it('returns an Array of numbers', function () {
             expect(this.invertedIndex.search('books.json', 'of').of).toEqual([1, 2]);
