@@ -19,13 +19,12 @@ angular.module('InvertedIndex', [])
     document.getElementById('json-file').addEventListener('change', (e) => {
       const files = e.target.files;
       const output = [];
-      for (let i = 0; i < files.length; i+=1) {
+      for (let i = 0; i < files.length; i += 1) {
         $scope.getFiles(files[i]);
       }
-      for (let i = 0; i<files.length; i+=1) {
-         let f = files[i];
+      for (let i = 0; i < files.length; i += 1) {
+        let f = files[i];
         const indexNames = output.push('<li><strong>', escape(f.name), '</strong><br>',
-
           f.size, ' bytes',
           '</li>');
       }
@@ -55,8 +54,6 @@ angular.module('InvertedIndex', [])
           try {
             this.data = JSON.parse(e.target.result);
             if (typeof (this.data) === 'object') {
-              console.log(files.name);
-              console.log(data);
               $scope.$apply(() => {
                 $scope.fileName.push(files.name);
                 $scope.index.uploadedFiles[files.name] = this.data;
@@ -79,7 +76,6 @@ angular.module('InvertedIndex', [])
       $scope.index.indexMap = {};
       try {
         $scope.index.createIndex($scope.index.uploadedFiles[$scope.fileSelected], $scope.fileSelected);
-        console.log($scope.index.fileMap);
         $scope.words = $scope.setIndex();
         $scope.indexes = $scope.index.docNumber[$scope.fileSelected];
         $scope.documents = $scope.index.docNumber;
@@ -108,8 +104,6 @@ angular.module('InvertedIndex', [])
           $scope.error = 'Search field cannot be empty';
         } else {
           $scope.error = '';
-          console.log($scope.fileTitle);
-
           if ($scope.fileTitle == "all") {
             $scope.displayTable = false;
             $scope.displayAll = true;
@@ -118,9 +112,8 @@ angular.module('InvertedIndex', [])
             $scope.displayAll = false;
           }
 
-          $scope.words = $scope.index.search($scope.searchIndex, $scope.fileTitle);
+          $scope.words = $scope.index.search($scope.fileTitle, $scope.searchIndex);
           $scope.indexes = $scope.index.docNumber[$scope.fileTitle];
-          console.log($scope.words);
         }
       } catch (ex) {
         $scope.error = 'Select the file to search first';

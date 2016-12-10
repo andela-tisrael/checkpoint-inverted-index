@@ -1,4 +1,5 @@
-/*jshint esnext: true */
+/*  eslint-disable no-unused-vars*/
+/* jshint esnext: true */
 /**
  * InvertedIndex class with constructor
  * @class
@@ -106,10 +107,10 @@ class InvertedIndex {
    * @param {string} title    the file title to be searched
    * @return {object} result     the search result is returned
    */
-  search(query, title) {
+  search(title, ...query) {
+    const searchQuery = query[0].match(/\w+/g);
     if (title === 'all') {
       const result = {};
-      const searchQuery = query.split(' ');
       Object.keys(this.fileMap).forEach((book) => {
         const searchResult = {};
         const dictionary = this.fileMap[book];
@@ -124,8 +125,6 @@ class InvertedIndex {
     }
     const dictionary = this.fileMap[title];
     const result = {};
-    const searchQuery = query.split(' ');
-
     searchQuery.forEach((word) => {
       if (word in dictionary) {
         result[word] = dictionary[word];

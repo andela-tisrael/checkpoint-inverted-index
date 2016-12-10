@@ -16,6 +16,15 @@ gulp.task('browserSync', function() {
     });
 });
 
+gulp.task('pageSync', () => {
+    browserSync.init({
+        server: {
+            baseDir: './public',
+            index: "./page.html"
+        }
+    });
+});
+
 /**
  * adding watch function to be able to reload our browser
  *  whenever changes are been made to js, html, and css files
@@ -28,6 +37,10 @@ gulp.task('watch', ['browserSync'], function() {
     gulp.watch('*.js', browserSync.reload);
     gulp.watch('spec/*.js', browserSync.reload);
     gulp.watch('public/src/*.js', browserSync.reload);
+});
+gulp.task('page',['pageSync'], ()=> {
+    gulp.watch('public/*.css', browserSync.reload);
+    gulp.watch('public/page.html', browserSync.reload);
 });
 gulp.task('coveralls', ['karma'], function() { // 2nd arg is a dependency: 'karma' must be finished first.  
     // Send results of istanbul's test coverage to coveralls.io.

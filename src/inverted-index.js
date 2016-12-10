@@ -1,5 +1,5 @@
 /*  eslint-disable no-unused-vars*/
-/*jshint esnext: true */
+/* jshint esnext: true */
 /**
  * InvertedIndex class with constructor
  * @class
@@ -18,7 +18,7 @@ class InvertedIndex {
   /**
    * Create index
    * @function
-   * @param {Array} fileContent 
+   * @param {Array} fileContent
    * @param {string} fileName Name of the file being indexed
    * @return {void}
    */
@@ -44,7 +44,7 @@ class InvertedIndex {
    */
   static token(combineWords) {
     return combineWords.toLowerCase()
-    .match(/\w+/g);
+      .match(/\w+/g);
   }
   /**
    * validates the file type using regEXP
@@ -107,10 +107,17 @@ class InvertedIndex {
    * @param {string} title    the file title selected to be searched
    * @return {object} result     the search result is returned
    */
-  search(query, title) {
+  search(title, ...query) {
+    let searchQuery = [];
+    if (query.length > 1) {
+      query.forEach((word) => {
+        searchQuery.push(word);
+      });
+    } else if (query[0] !== '') {
+      searchQuery = query[0].match(/\w+/g);
+    }
     if (title === 'all') {
       const result = {};
-      const searchQuery = query.split(' ');
       Object.keys(this.fileMap).forEach((book) => {
         const searchResult = {};
         const dictionary = this.fileMap[book];
@@ -125,8 +132,6 @@ class InvertedIndex {
     }
     const dictionary = this.fileMap[title];
     const result = {};
-    const searchQuery = query.split(' ');
-
     searchQuery.forEach((word) => {
       if (word in dictionary) {
         result[word] = dictionary[word];

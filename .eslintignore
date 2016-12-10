@@ -13,3 +13,4 @@ karma.conf.js
 ./lib
 ./*.js
 ./*.json
+!src/invertedindex.js
