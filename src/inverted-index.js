@@ -1,4 +1,5 @@
 /*  eslint-disable no-unused-vars*/
+/*  eslint-disable no-undef */
 /* eslint-disable no-lonely-if*/
 /* jshint esnext: true */
 /**
@@ -30,53 +31,12 @@ class InvertedIndex {
       this.docCount.push(parseInt(index, 10));
       this.count += 1;
       const combineWords = `${content.title} ${content.text}`;
-      const tokenizedWords = InvertedIndex.token(combineWords);
+      const tokenizedWords = Utility.token(combineWords);
       const wordIndex = new Set(tokenizedWords);
       this.mapWords(wordIndex, this.count);
     });
     this.fileMap[fileName] = this.indexMap;
     this.docNumber[fileName] = this.docCount;
-  }
-  /**
-   * Get tokens in a string of text.
-   * @function
-   * @param {String} combineWords concatenated title and texts to be tokenize.
-   * @return {Array} array of tokens
-   */
-  static token(combineWords) {
-    return combineWords.toLowerCase()
-      .match(/\w+/g);
-  }
-  /**
-   * validates the file type using regEXP
-   * @param  {file} file   file that is being uploaded
-   * @return {string}      error message
-   */
-  static fileIsValid(file) {
-    if (!file.name.toLowerCase().match(/\.json$/)) {
-      return false;
-    }
-    return true;
-  }
-  /**
-   * check if the file content is a valid object
-   * @param  {object} content file content which can be a valid json object
-   * @return {string}         error message
-   */
-  static contentIsValid(content) {
-    if (typeof (content) !== 'object') {
-      return false;
-    }
-    return true;
-  }
-  /**
-   * Checks if the file content is in a standard array format
-   * @return {string}         error message
-   */
-  static contentIsEmpty() {
-    if (InvertedIndex.docCount === undefined) {
-      return 'JSON file should be an array of objects';
-    }
   }
   /**
    * Map Array of words to indexMap.

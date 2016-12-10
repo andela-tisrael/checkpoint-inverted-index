@@ -16,13 +16,13 @@ describe('Inverted Index', () => {
 
     describe('Read book data', () => {
         it('should ensure the file content is actually a valid JSON Array', function () {
-            expect(InvertedIndex.fileIsValid(filename)).toEqual(true);
-            expect(InvertedIndex.fileIsValid(filename2)).toEqual(false);
+            expect(Utility.fileIsValid(filename)).toEqual(true);
+            expect(Utility.fileIsValid(filename2)).toEqual(false);
         });
         it('should ensure JSON array is not empty', function () {
-            expect(InvertedIndex.contentIsValid(file2[0])).toEqual(false);
-            expect(InvertedIndex.contentIsValid(books[0])).toEqual(true);
-            expect(InvertedIndex.contentIsEmpty(file2)).toEqual('JSON file should be an array of objects');
+            expect(Utility.contentIsValid(file2[0])).toEqual(false);
+            expect(Utility.contentIsValid(books[0])).toEqual(true);
+            expect(Utility.contentIsEmpty(file2)).toEqual('JSON file should be an array of objects');
         });
     });
 
@@ -38,20 +38,20 @@ describe('Inverted Index', () => {
 
     describe('Tokenize', () => {
         it('Removes special characters', function () {
-            expect(InvertedIndex.token('alice !!!!, hello, world')).toEqual(['alice', 'hello', 'world']);
-            expect(InvertedIndex.token('Today is **!! , a good!. day to smile')).toEqual(['today', 'is', 'a', 'good', 'day', 'to', 'smile']);
+            expect(Utility.token('alice !!!!, hello, world')).toEqual(['alice', 'hello', 'world']);
+            expect(Utility.token('Today is **!! , a good!. day to smile')).toEqual(['today', 'is', 'a', 'good', 'day', 'to', 'smile']);
         });
         it('Creates an array of tokens', function () {
-            expect(InvertedIndex.token(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
+            expect(Utility.token(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
         });
         it('should return tokenized data as an array of strings in small letters', function () {
-            expect(InvertedIndex.token(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
+            expect(Utility.token(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
         });
         it('should filter out unwanted symbols', function () {
-            expect(InvertedIndex.token('alice # in* Wonderland')).toEqual(['alice', 'in', 'wonderland']);
+            expect(Utility.token('alice # in* Wonderland')).toEqual(['alice', 'in', 'wonderland']);
         });
         it('should return an array after strings of words is tokenized', function () {
-            expect(InvertedIndex.token('alice is @#$ in wonderland$%')).toEqual(['alice', 'is', 'in', 'wonderland']);
+            expect(Utility.token('alice is @#$ in wonderland$%')).toEqual(['alice', 'is', 'in', 'wonderland']);
         });
     });
 
