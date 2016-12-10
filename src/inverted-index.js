@@ -1,4 +1,5 @@
 /*  eslint-disable no-unused-vars*/
+/* eslint-disable no-lonely-if*/
 /* jshint esnext: true */
 /**
  * InvertedIndex class with constructor
@@ -108,7 +109,6 @@ class InvertedIndex {
    * @return {object} result     the search result is returned
    */
   search(title, ...query) {
-    console.log(Array.isArray(query[0]));
     let searchQuery = [];
     if (query.length > 1) {
       query.forEach((word) => {
@@ -117,7 +117,7 @@ class InvertedIndex {
     } else {
       if (Array.isArray(query[0])) {
         query[0].forEach((word) => {
-          let terms = word.match(/\w+/g);
+          const terms = word.match(/\w+/g);
           terms.forEach((term) => {
             searchQuery.push(term);
           });
