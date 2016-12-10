@@ -1,4 +1,5 @@
 /* eslint-disable */
+/* jshint esnext: true */
 var gulp = require('gulp');
 var karma = require('karma'); 
 var browserSync = require('browser-sync').create();
