@@ -1,5 +1,6 @@
 /*  eslint-disable no-unused-vars*/
 /*  eslint-disable no-undef */
+/* jshint esnext: true */
 /**
 * helper class for InvertedIndex
 * @class
