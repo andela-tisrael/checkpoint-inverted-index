@@ -12,7 +12,7 @@ class Utility {
      * @param {String} combineWords concatenated title and texts to be tokenize.
      * @return {Array} array of tokens
      */
-  static token(combineWords) {
+  static getToken(combineWords) {
     return combineWords.toLowerCase()
       .match(/\w+/g);
   }

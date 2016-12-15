@@ -31,7 +31,7 @@ class InvertedIndex {
       this.docCount.push(parseInt(index, 10));
       this.count += 1;
       const combineWords = `${content.title} ${content.text}`;
-      const tokenizedWords = Utility.token(combineWords);
+      const tokenizedWords = Utility.getToken(combineWords);
       const wordIndex = new Set(tokenizedWords);
       this.mapWords(wordIndex, this.count);
     });

@@ -38,20 +38,20 @@ describe('Inverted Index', () => {
 
     describe('Tokenize', () => {
         it('Removes special characters', function () {
-            expect(Utility.token('alice !!!!, hello, world')).toEqual(['alice', 'hello', 'world']);
-            expect(Utility.token('Today is **!! , a good!. day to smile')).toEqual(['today', 'is', 'a', 'good', 'day', 'to', 'smile']);
+            expect(Utility.getToken('alice !!!!, hello, world')).toEqual(['alice', 'hello', 'world']);
+            expect(Utility.getToken('Today is **!! , a good!. day to smile')).toEqual(['today', 'is', 'a', 'good', 'day', 'to', 'smile']);
         });
         it('Creates an array of tokens', function () {
-            expect(Utility.token(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
+            expect(Utility.getToken(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
         });
         it('should return tokenized data as an array of strings in small letters', function () {
-            expect(Utility.token(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
+            expect(Utility.getToken(books[0].title)).toEqual(['alice', 'in', 'wonderland']);
         });
         it('should filter out unwanted symbols', function () {
-            expect(Utility.token('alice # in* Wonderland')).toEqual(['alice', 'in', 'wonderland']);
+            expect(Utility.getToken('alice # in* Wonderland')).toEqual(['alice', 'in', 'wonderland']);
         });
         it('should return an array after strings of words is tokenized', function () {
-            expect(Utility.token('alice is @#$ in wonderland$%')).toEqual(['alice', 'is', 'in', 'wonderland']);
+            expect(Utility.getToken('alice is @#$ in wonderland$%')).toEqual(['alice', 'is', 'in', 'wonderland']);
         });
     });
 
@@ -76,7 +76,12 @@ describe('Inverted Index', () => {
     describe('Search Index', function () {
         const query = 'alice';
         const query1 = 'lord';
+        const query2 = 'a';
         const word = ['alice in wonderland', 'lord'];
+        it('should ensure index returns the correct results when searched', function() {
+             expect(this.invertedIndex.search('books.json', query, query1, query2)).toEqual({ alice: [1], lord: [2], a:[1, 2]});
+             expect(this.invertedIndex.search('all', query, query1, query2)).toEqual(({ 'books.json': { alice: [1], lord: [2], a:[1, 2] }, 'files.json': { alice: [1], lord: [2], a:[1, 2] } }));
+        });
         it('should be able to search through all files', function () {
             expect(this.invertedIndex.search('all', query, query1)).toEqual(({ 'books.json': { alice: [1], lord: [2] }, 'files.json': { alice: [1], lord: [2] } }));
         });
