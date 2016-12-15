@@ -1,0 +1,16 @@
+# /node_modules/* and /bower_components/* ignored by default
+
+# Ignore all except the app folder
+
+src/angular.min.js
+./jasmine/*.js
+ jasmine/lib/jasmine-2.3.4/jasmine.js
+public/*
+public/src/apps.js
+gulpfile.js
+karma.conf.js
+*.js
+./lib
+./*.js
+./*.json
+!src/invertedindex.js
